@@ -2,7 +2,7 @@ import "./App.sass";
 import { Canvas } from "@react-three/fiber";
 import Earth from "./components/Earth";
 import Iss from "./components/Iss";
-import { CubeCamera, OrbitControls, Stars } from "@react-three/drei";
+import { OrbitControls, Stars } from "@react-three/drei";
 import Light from "./components/Light";
 import { useRef } from "react";
 
@@ -22,20 +22,7 @@ function App() {
 	});
 
 	return (
-		<Canvas /* camera={{ position: [-5, 2, 10], fov: 50 }} */>
-			<CubeCamera
-				resolution={256} // Size of the off-buffer (256 by default)
-				frames={Infinity} // How many frames it should render (Indefinitively by default)
-				near={1}
-				far={1000}
-			>
-				{(texture) => (
-					<mesh>
-						<boxGeometry />
-						<meshStandardMaterial envMap={texture} />
-					</mesh>
-				)}
-			</CubeCamera>
+		<Canvas camera={{ position: [-5, 2, 10], fov: 50 }}>
 			<Light />
 			<ambientLight intensity={0.5} />
 
@@ -48,7 +35,7 @@ function App() {
 				fade
 			/>
 
-			<Iss scale={[0.02, 0.02, 0.02]} />
+			<Iss scale={[0.02, 0.02, 0.02]}></Iss>
 
 			<Earth scale={[4, 4, 4]} />
 
@@ -58,8 +45,8 @@ function App() {
 				zoomSpeed={5}
 				enableZoom={true}
 				ref={controls}
-				minDistance={5}
-				maxDistance={10}
+				// minDistance={6}
+				maxDistance={11}
 				enableDamping={true}
 			/>
 		</Canvas>
