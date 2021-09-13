@@ -8,6 +8,7 @@ import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { useFrame } from "@react-three/fiber";
 import { PerspectiveCamera } from "three";
+import axios from "axios";
 
 type GLTFResult = GLTF & {
 	nodes: {
@@ -177,20 +178,26 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 		iss.current.rotateX(-1.6);
 	}
 
-	let coords = {
-		lat: 50.07667437407548,
-		lon: -5.655203869050405,
-	};
+	async function fetchIss() {
+		let resp = await axios.get(
+			"https://api.wheretheiss.at/v1/satellites/25544"
+		);
 
-	let issPos = convertCoordsTo3d(coords);
+		let coords = {
+			lat: resp.data.latitude,
+			lon: resp.data.longitude,
+		};
+
+		return coords;
+	}
 
 	function convertCoordsTo3d(coords: { lat: number; lon: number }) {
 		let lat = (90 - coords.lat) * (Math.PI / 180);
 		let lon = (180 + coords.lon) * (Math.PI / 180);
 
-		let x = -4 * (Math.sin(lat) * Math.cos(lon));
-		let y = 4 * Math.cos(lat);
-		let z = 4 * Math.sin(lat) * Math.sin(lon);
+		let x = -5 * (Math.sin(lat) * Math.cos(lon));
+		let y = 5 * Math.cos(lat);
+		let z = 5 * Math.sin(lat) * Math.sin(lon);
 
 		return {
 			x,
@@ -199,23 +206,17 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 		};
 	}
 
-	useEffect(() => {
-		// iss.current.position.add(new THREE.Vector3(0, 0, 0));
-		// iss.current.position.applyAxisAngle(new THREE.Vector3(0, 0, 0), 1);
-		// iss.current.position.add(new THREE.Vector3(4.4, 0, 0));
+	// setInterval(async () => {
+	// 	let issPos = convertCoordsTo3d(await fetchIss());
 
-		console.log(issPos);
+	// 	iss.current.position.set(issPos.x, issPos.y, issPos.z);
+	// }, 10000);
 
-		iss.current.position.set(issPos.x, issPos.y, issPos.z);
-	}, [iss, issPos]);
-
-	useFrame((state: any) => {
+	useFrame(async (state: any) => {
 		if (!iss.current) return;
 		let camera: PerspectiveCamera = state.camera;
 
 		lookAtCenter();
-
-		// iss.current.position.applyAxisAngle(new THREE.Vector3(0, 1, 0.2), 0.0005);
 
 		if (cameraFollowIss) {
 			camera.lookAt(iss.current.position);
