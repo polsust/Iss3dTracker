@@ -1,36 +1,43 @@
 import "./App.sass";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import Earth from "./components/Earth";
 import Iss from "./components/Iss";
 import { CubeCamera, OrbitControls, Stars } from "@react-three/drei";
-import { Suspense, useRef } from "react";
+import Light from "./components/Light";
+import { useRef } from "react";
 
 function App() {
-	const cam = useRef(null);
+	const controls = useRef(undefined);
 
-	setInterval(() => {
-		console.log(cam?.current);
-	}, 5000);
+	window.addEventListener("mousedown", () => {
+		if (!controls.current) return;
+
+		controls.current.enableDamping = false;
+	});
+
+	window.addEventListener("mouseup", () => {
+		if (!controls.current) return;
+
+		controls.current.enableDamping = true;
+	});
 
 	return (
 		<Canvas /* camera={{ position: [-5, 2, 10], fov: 50 }} */>
-			{/* <ambientLight intensity={0.5} /> */}
-			<mesh ref={cam}>
-				<CubeCamera
-					resolution={256} // Size of the off-buffer (256 by default)
-					frames={Infinity} // How many frames it should render (Indefinitively by default)
-					near={1}
-					far={1000}
-				>
-					{(texture) => (
-						<mesh>
-							<boxGeometry />
-							<meshStandardMaterial envMap={texture} />
-						</mesh>
-					)}
-				</CubeCamera>
-				<pointLight position={[5, 5, 1]} intensity={1} />
-			</mesh>
+			<CubeCamera
+				resolution={256} // Size of the off-buffer (256 by default)
+				frames={Infinity} // How many frames it should render (Indefinitively by default)
+				near={1}
+				far={1000}
+			>
+				{(texture) => (
+					<mesh>
+						<boxGeometry />
+						<meshStandardMaterial envMap={texture} />
+					</mesh>
+				)}
+			</CubeCamera>
+			<Light />
+			<ambientLight intensity={0.5} />
 
 			<Stars
 				radius={100}
@@ -41,21 +48,19 @@ function App() {
 				fade
 			/>
 
-			<Iss
-				rotation={[0, 0, -0.5]}
-				scale={[0.05, 0.05, 0.05]}
-				position={[3, 3, 0]}
-			/>
+			<Iss scale={[0.02, 0.02, 0.02]} />
 
 			<Earth scale={[4, 4, 4]} />
 
 			<OrbitControls
-				enableDamping={false}
 				rotateSpeed={0.5}
-				maxZoom={0.1}
 				enablePan={false}
-				minZoom={1}
 				zoomSpeed={5}
+				enableZoom={true}
+				ref={controls}
+				minDistance={5}
+				maxDistance={10}
+				enableDamping={true}
 			/>
 		</Canvas>
 	);
