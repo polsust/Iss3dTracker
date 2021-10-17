@@ -17,7 +17,7 @@ function Earth(props: any) {
 	return (
 		<group {...props}>
 			<mesh>
-				<sphereGeometry args={[1.005, 32, 32]} />
+				<sphereGeometry args={[1.005, 100, 100]} />
 				<meshPhongMaterial
 					map={cloudsMap}
 					opacity={0.4}
@@ -26,7 +26,7 @@ function Earth(props: any) {
 				/>
 			</mesh>
 			<mesh>
-				<sphereGeometry args={[1, 32, 32]} />
+				<sphereGeometry args={[1, 100, 100]} />
 				<meshPhongMaterial specularMap={specularMap} />
 				<meshStandardMaterial map={colorMap} normalMap={normalMap} />
 			</mesh>

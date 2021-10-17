@@ -42,7 +42,6 @@ function App() {
 			<OrbitControls
 				rotateSpeed={0.5}
 				enablePan={false}
-				zoomSpeed={5}
 				enableZoom={true}
 				ref={controls}
 				// minDistance={6}
