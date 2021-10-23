@@ -1,9 +1,9 @@
 import "./App.sass";
 import { Canvas } from "@react-three/fiber";
-import Earth from "./components/Earth";
-import Iss from "./components/Iss";
+import Earth from "./components/3d/Earth";
+import Iss from "./components/3d/Iss";
 import { OrbitControls, Stars } from "@react-three/drei";
-import Light from "./components/Light";
+import Light from "./components/3d/Light";
 import { useRef } from "react";
 
 function App() {
@@ -44,7 +44,7 @@ function App() {
 				enablePan={false}
 				enableZoom={true}
 				ref={controls}
-				// minDistance={6}
+				minDistance={6}
 				maxDistance={11}
 				enableDamping={true}
 			/>

@@ -3,10 +3,10 @@ import { TextureLoader } from "three";
 import React from "react";
 import * as THREE from "three";
 
-import clouds from "../assets/textures/8k_earth_clouds.jpg";
-import color from "../assets/textures/8k_earth_daymap.jpg";
-import normal from "../assets/textures/8k_earth_normal_map.jpg";
-import specular from "../assets/textures/8k_earth_specular_map.jpg";
+import clouds from "../../assets/textures/8k_earth_clouds.jpg";
+import color from "../../assets/textures/8k_earth_daymap.jpg";
+import normal from "../../assets/textures/8k_earth_normal_map.jpg";
+import specular from "../../assets/textures/8k_earth_specular_map.jpg";
 
 function Earth(props: any) {
 	const [colorMap, normalMap, specularMap, cloudsMap] = useLoader(

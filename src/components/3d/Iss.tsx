@@ -9,7 +9,7 @@ import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { useFrame } from "@react-three/fiber";
 import { PerspectiveCamera } from "three";
 import axios from "axios";
-import CartesianCoords from "../interfaces/Cartesiancoords";
+import CartesianCoords from "../../interfaces/Cartesiancoords";
 import TWEEN from "@tweenjs/tween.js";
 import { setInterval } from "timers";
 
@@ -213,45 +213,37 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 		};
 	}
 
-	const moveIss = async () => {
-		if (!iss.current) return;
-
-		const currentIssPos: CartesianCoords = iss.current.position;
-		const newIssPos: CartesianCoords = convertCoordsToCartesian(
-			await fetchIss()
-		);
-		let diff: CartesianCoords = {
-			x: newIssPos.x - currentIssPos.x,
-			y: newIssPos.y - currentIssPos.y,
-			z: newIssPos.z - currentIssPos.z,
-		};
-
-		const distanceTraveled: number = Math.abs(diff.x + diff.y + diff.z);
-		const animationDuration: number =
-			distanceTraveled + distanceTraveled * 100000000;
-
-		console.log(currentIssPos);
-		console.log(newIssPos);
-
-		console.log("diff", diff);
-		console.log("time", animationDuration);
-
-		let tween = new TWEEN.Tween(currentIssPos);
-
-		tween.to(newIssPos, animationDuration);
-		tween.start();
-	};
-
 	useEffect(() => {
 		const setIssInitialPosition = async () => {
 			let newIssPos = convertCoordsToCartesian(await fetchIss());
 
 			iss.current.position.set(newIssPos.x, newIssPos.y, newIssPos.z);
 		};
+		const moveIss = async () => {
+			if (!iss.current) return;
+
+			const currentIssPos: CartesianCoords = iss.current.position;
+			const newIssPos: CartesianCoords = convertCoordsToCartesian(
+				await fetchIss()
+			);
+			// let diff: CartesianCoords = {
+			// 	x: newIssPos.x - currentIssPos.x,
+			// 	y: newIssPos.y - currentIssPos.y,
+			// 	z: newIssPos.z - currentIssPos.z,
+			// };
+
+			// const distanceTraveled: number = Math.abs(diff.x + diff.y + diff.z);
+			// const animationDuration: number =
+			// 	distanceTraveled + distanceTraveled * 100000000;
+
+			let tween = new TWEEN.Tween(currentIssPos);
+
+			tween.to(newIssPos, 5000);
+			tween.start();
+		};
 		setIssInitialPosition();
-		setTimeout(moveIss, 1000);
-		setInterval(moveIss, 10000);
-	}, [iss, moveIss]);
+		setInterval(moveIss, 5000);
+	}, [iss]);
 
 	useFrame(async (state: any) => {
 		if (!iss.current) return;

@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "src/components/Earth.tsx"  ]
+, "src/components/3d/Earth.tsx"  ]
 }
