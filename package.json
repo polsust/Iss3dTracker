@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"@craco/craco": "^6.3.0",
 		"@react-three/drei": "^7.7.0",
 		"@react-three/fiber": "^7.0.6",
 		"@testing-library/jest-dom": "^5.14.1",
@@ -25,9 +26,9 @@
 	},
 	"scripts": {
 		"deploy": "npm run build && firebase deploy",
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
+		"start": "craco start",
+		"build": "craco build",
+		"test": "craco test",
 		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {
@@ -49,6 +50,9 @@
 		]
 	},
 	"devDependencies": {
-		"@types/three": "^0.131.0"
+		"@types/three": "^0.131.0",
+		"autoprefixer": "^9.8.8",
+		"postcss": "^7.0.39",
+		"tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
 	}
 }
