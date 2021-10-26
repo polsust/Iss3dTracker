@@ -4,51 +4,38 @@ import Earth from "./components/3d/Earth";
 import Iss from "./components/3d/Iss";
 import { OrbitControls, Stars } from "@react-three/drei";
 import Light from "./components/3d/Light";
-import { useRef } from "react";
+import Overlay from "./components/ui/Overlay";
 
 function App() {
-	const controls = useRef(undefined);
-
-	window.addEventListener("mousedown", () => {
-		if (!controls.current) return;
-
-		controls.current.enableDamping = false;
-	});
-
-	window.addEventListener("mouseup", () => {
-		if (!controls.current) return;
-
-		controls.current.enableDamping = true;
-	});
-
 	return (
-		<Canvas camera={{ position: [-5, 2, 10], fov: 50 }}>
-			<Light />
-			<ambientLight intensity={0.5} />
+		<>
+			<Overlay />
+			<Canvas>
+				<Light />
+				<ambientLight intensity={0.5} />
 
-			<Stars
-				radius={100}
-				depth={50}
-				count={5000}
-				factor={4}
-				saturation={0}
-				fade
-			/>
+				<Stars
+					radius={100}
+					depth={50}
+					count={7000}
+					factor={4}
+					saturation={0}
+					fade
+				/>
 
-			<Iss scale={[0.02, 0.02, 0.02]}></Iss>
+				<Iss scale={[0.02, 0.02, 0.02]}></Iss>
 
-			<Earth scale={[4, 4, 4]} />
+				<Earth scale={[4, 4, 4]} />
 
-			<OrbitControls
-				rotateSpeed={0.5}
-				enablePan={false}
-				enableZoom={true}
-				ref={controls}
-				minDistance={6}
-				maxDistance={11}
-				enableDamping={true}
-			/>
-		</Canvas>
+				<OrbitControls
+					rotateSpeed={0.5}
+					enablePan={false}
+					enableZoom={true}
+					minDistance={6}
+					maxDistance={11}
+				/>
+			</Canvas>
+		</>
 	);
 }
 
