@@ -5,10 +5,11 @@ import Iss from "./components/3d/Iss";
 import { OrbitControls, Stars } from "@react-three/drei";
 import Light from "./components/3d/Light";
 import Overlay from "./components/ui/Overlay";
+import Providers from "./providers/Providers";
 
 function App() {
 	return (
-		<>
+		<Providers>
 			<Overlay />
 			<Canvas>
 				<Light />
@@ -35,7 +36,7 @@ function App() {
 					maxDistance={11}
 				/>
 			</Canvas>
-		</>
+		</Providers>
 	);
 }
 
