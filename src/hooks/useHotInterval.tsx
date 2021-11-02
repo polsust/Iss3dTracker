@@ -1,15 +1,13 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 /**
  * Like setInterval, but fires right on the start
  * @param callback
  * @param interval
  */
-export default function useHotInterval(callback: () => any, interval: number) {
+export default function useHotInterval(callback: () => void, interval: number) {
 	useEffect(() => {
 		callback();
-		const intervalReference = setInterval(() => callback(), interval);
-
-		return clearInterval(intervalReference);
-	}, [callback, interval]);
+		setInterval(() => callback(), interval);
+	}, []);
 }
