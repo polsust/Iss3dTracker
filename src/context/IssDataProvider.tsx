@@ -1,12 +1,16 @@
 import axios from "axios";
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import useHotInterval from "../hooks/useHotInterval";
 import IssApiResponse from "../interfaces/IssApiResponse";
 
-const IssDataContext = createContext<IssApiResponse | null>(null);
+const IssDataContext = createContext<IssApiResponse>(null);
 
 export default function IssDataProvider({ children }) {
-	const [issData, setIssData] = useState<IssApiResponse>(null);
+	const [issData, setIssData] = useState(null);
+
+	useEffect(() => {
+		console.log(issData);
+	}, [issData]);
 
 	const fetchIss = async (): Promise<IssApiResponse> => {
 		const response = await axios.get(
@@ -15,14 +19,14 @@ export default function IssDataProvider({ children }) {
 
 		const { latitude, longitude, altitude, velocity } = response.data;
 
-		const issApiResponse: IssApiResponse = {
+		const issApiFormatedResponse: IssApiResponse = {
 			latitude,
 			longitude,
 			altitude,
 			velocity,
 		};
 
-		return issApiResponse;
+		return issApiFormatedResponse;
 	};
 
 	useHotInterval(async () => {

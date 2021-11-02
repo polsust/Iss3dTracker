@@ -226,23 +226,14 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 			const newIssPos: CartesianCoords = convertCoordsToCartesian(
 				await fetchIss()
 			);
-			// let diff: CartesianCoords = {
-			// 	x: newIssPos.x - currentIssPos.x,
-			// 	y: newIssPos.y - currentIssPos.y,
-			// 	z: newIssPos.z - currentIssPos.z,
-			// };
-
-			// const distanceTraveled: number = Math.abs(diff.x + diff.y + diff.z);
-			// const animationDuration: number =
-			// 	distanceTraveled + distanceTraveled * 100000000;
 
 			let tween = new TWEEN.Tween(currentIssPos);
 
 			tween.to(newIssPos, 5000);
 			tween.start();
 		};
-		setIssInitialPosition();
-		setInterval(moveIss, 5000);
+		// setIssInitialPosition();
+		// setInterval(moveIss, 5000);
 	}, [iss]);
 
 	useFrame(async (state: any) => {

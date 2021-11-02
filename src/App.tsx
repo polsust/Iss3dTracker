@@ -5,7 +5,7 @@ import Iss from "./components/3d/Iss";
 import { OrbitControls, Stars } from "@react-three/drei";
 import Light from "./components/3d/Light";
 import Overlay from "./components/ui/Overlay";
-import Providers from "./providers/Providers";
+import Providers from "./context/Providers";
 
 function App() {
 	return (
