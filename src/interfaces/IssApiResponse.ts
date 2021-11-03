@@ -4,8 +4,10 @@
  * The units are in kilometers
  */
 export default interface IssApiResponse {
-	latitude: number;
-	longitude: number;
+	position: {
+		latitude: number;
+		longitude: number;
+	};
 	altitude: number;
 	velocity: number;
 }

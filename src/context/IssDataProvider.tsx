@@ -3,10 +3,17 @@ import React, { createContext, useEffect, useState } from "react";
 import useHotInterval from "../hooks/useHotInterval";
 import IssApiResponse from "../interfaces/IssApiResponse";
 
-const IssDataContext = createContext<IssApiResponse>(null);
+export const IssDataContext = createContext<IssApiResponse>(null);
 
 export default function IssDataProvider({ children }) {
-	const [issData, setIssData] = useState(null);
+	const [issData, setIssData] = useState<IssApiResponse>({
+		position: {
+			latitude: 0,
+			longitude: 0,
+		},
+		altitude: 0,
+		velocity: 0,
+	});
 
 	useEffect(() => {
 		console.log(issData);
@@ -20,8 +27,10 @@ export default function IssDataProvider({ children }) {
 		const { latitude, longitude, altitude, velocity } = response.data;
 
 		const issApiFormatedResponse: IssApiResponse = {
-			latitude,
-			longitude,
+			position: {
+				latitude,
+				longitude,
+			},
 			altitude,
 			velocity,
 		};
