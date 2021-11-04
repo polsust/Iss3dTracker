@@ -2,12 +2,13 @@ import { OrbitControls, Stars, useContextBridge } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import React from "react";
 import { IssDataContext } from "../../context/IssDataProvider";
+import { IssHoverContext } from "../../context/IssHoverProvider";
 import Earth from "./Earth";
 import Iss from "./Iss";
 import Light from "./Light";
 
 export default function Scene3d() {
-	const ContextBridge = useContextBridge(IssDataContext);
+	const ContextBridge = useContextBridge(IssDataContext, IssHoverContext);
 
 	return (
 		<Canvas>

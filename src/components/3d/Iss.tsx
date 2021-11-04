@@ -14,6 +14,7 @@ import TWEEN from "@tweenjs/tween.js";
 import { setInterval } from "timers";
 import { IssDataContext } from "../../context/IssDataProvider";
 import GlobalCoordinates from "../../interfaces/GlobalCoordinates";
+import { IssHoverContext } from "../../context/IssHoverProvider";
 
 type GLTFResult = GLTF & {
 	nodes: {
@@ -185,6 +186,8 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 	const iss = useRef<THREE.Group>();
 	const issData = useContext(IssDataContext);
 
+	const issHovering = useContext(IssHoverContext);
+
 	function lookAtCenter() {
 		iss.current.lookAt(new THREE.Vector3(0, 0, 0));
 		iss.current.rotateX(-1.6);
@@ -208,8 +211,6 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 	}
 
 	useEffect(() => {
-		console.log("mount");
-
 		const setIssInitialPosition = async () => {
 			const newIssPos = convertCoordsToCartesian(issData.position);
 			iss.current.position.set(newIssPos.x, newIssPos.y, newIssPos.z);
@@ -237,8 +238,6 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 	}, [issData]);
 
 	useFrame(async (state: any) => {
-		// console.log(issData);
-
 		if (!iss.current) return;
 		lookAtCenter();
 		TWEEN.update();
@@ -269,9 +268,11 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 		<group ref={iss} {...props} dispose={null}>
 			<mesh
 				onPointerEnter={() => {
+					issHovering.setIsHovering(true);
 					document.body.style.cursor = "pointer";
 				}}
 				onPointerLeave={() => {
+					issHovering.setIsHovering(false);
 					document.body.style.cursor = "auto";
 				}}
 				onClick={() => {

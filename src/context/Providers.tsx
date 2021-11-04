@@ -1,6 +1,10 @@
-import React from "react";
 import IssDataProvider from "./IssDataProvider";
+import IssHoverProvider from "./IssHoverProvider";
 
 export default function Providers({ children }) {
-	return <IssDataProvider>{children}</IssDataProvider>;
+	return (
+		<IssDataProvider>
+			<IssHoverProvider>{children}</IssHoverProvider>
+		</IssDataProvider>
+	);
 }
