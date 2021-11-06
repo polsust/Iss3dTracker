@@ -8,13 +8,11 @@ import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 import { useFrame } from "@react-three/fiber";
 import { PerspectiveCamera } from "three";
-import axios from "axios";
 import CartesianCoords from "../../interfaces/CartesianCoordinates";
 import TWEEN from "@tweenjs/tween.js";
-import { setInterval } from "timers";
 import { IssDataContext } from "../../context/IssDataProvider";
 import GlobalCoordinates from "../../interfaces/GlobalCoordinates";
-import { IssHoverContext } from "../../context/IssHoverProvider";
+import { Iss3dObjectDataContext } from "../../context/Iss3dObjectDataProvider";
 
 type GLTFResult = GLTF & {
 	nodes: {
@@ -186,7 +184,7 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 	const iss = useRef<THREE.Group>();
 	const issData = useContext(IssDataContext);
 
-	const issHovering = useContext(IssHoverContext);
+	const issObjectData = useContext(Iss3dObjectDataContext);
 
 	function lookAtCenter() {
 		iss.current.lookAt(new THREE.Vector3(0, 0, 0));
@@ -262,17 +260,29 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 				cameraFollowIss.current = false;
 			});
 		}
+		const issToScreenPosition = () => {
+			const projVec = new THREE.Vector3();
+
+			projVec.copy(iss.current.position);
+			projVec.project(camera);
+
+			projVec.x = ((projVec.x + 1) / 2) * window.innerWidth;
+			projVec.y = (-(projVec.y - 1) / 2) * window.innerHeight;
+
+			return { x: projVec.x, y: projVec.y };
+		};
+		issObjectData.setIssScreenPosition(issToScreenPosition());
 	});
 
 	return (
 		<group ref={iss} {...props} dispose={null}>
 			<mesh
 				onPointerEnter={() => {
-					issHovering.setIsHovering(true);
+					issObjectData.setIsCursorHovering(true);
 					document.body.style.cursor = "pointer";
 				}}
 				onPointerLeave={() => {
-					issHovering.setIsHovering(false);
+					issObjectData.setIsCursorHovering(false);
 					document.body.style.cursor = "auto";
 				}}
 				onClick={() => {

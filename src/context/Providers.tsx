@@ -1,10 +1,10 @@
 import IssDataProvider from "./IssDataProvider";
-import IssHoverProvider from "./IssHoverProvider";
+import Iss3dObjectDataProvider from "./Iss3dObjectDataProvider";
 
 export default function Providers({ children }) {
 	return (
 		<IssDataProvider>
-			<IssHoverProvider>{children}</IssHoverProvider>
+			<Iss3dObjectDataProvider>{children}</Iss3dObjectDataProvider>
 		</IssDataProvider>
 	);
 }
