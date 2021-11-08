@@ -4,9 +4,9 @@ import Metrics from "./Metrics";
 
 export default function Overlay() {
 	return (
-		<div className="h-screen w-screen absolute z-50 pointer-events-none">
+		<div className="absolute z-50 w-screen h-screen pointer-events-none">
 			{/* <Metrics /> */}
-			<EmbedVideo/>
+			<EmbedVideo />
 		</div>
 	);
 }

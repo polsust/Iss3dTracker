@@ -35,9 +35,8 @@ export default function Scene3d() {
 				<OrbitControls
 					rotateSpeed={0.5}
 					enablePan={false}
-					enableZoom={true}
 					minDistance={6}
-					maxDistance={11}
+					maxDistance={12}
 				/>
 			</ContextBridge>
 		</Canvas>
