@@ -41,6 +41,7 @@ export default function EmbedVideo() {
 						playerVars: {
 							autoplay: 1,
 							controls: 0,
+							mute: 1,
 						},
 					}}
 				/>
