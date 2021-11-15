@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import useHotInterval from "../hooks/useHotInterval";
 import IssApiResponse from "../interfaces/IssApiResponse";
 

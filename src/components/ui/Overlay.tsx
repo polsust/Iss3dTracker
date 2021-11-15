@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import EmbedVideo from "./EmbedVideo";
+import LoadingScreen from "./LoadingScreen";
 import Metrics from "./Metrics";
 import Sources from "./Sources";
 
 export default function Overlay() {
+	const [isReady, setIsReady] = useState(false);
+
+	useEffect(() => {
+		setTimeout(() => {
+			setIsReady(true);
+		}, 6000);
+	}, []);
+
+	if (!isReady) {
+		return <LoadingScreen />;
+	}
+
 	return (
 		<div className="absolute z-50 w-screen h-screen pointer-events-none">
 			{/* <Metrics /> */}
