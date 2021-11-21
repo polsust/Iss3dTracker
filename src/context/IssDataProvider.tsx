@@ -36,7 +36,7 @@ export default function IssDataProvider({ children }) {
 
 	useHotInterval(async () => {
 		setIssData(await fetchIss());
-	}, 5000);
+	}, 1000);
 
 	return (
 		<IssDataContext.Provider value={issData}>

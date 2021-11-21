@@ -10,7 +10,7 @@ export default function Overlay() {
 	useEffect(() => {
 		setTimeout(() => {
 			setIsReady(true);
-		}, 6000);
+		}, 5000);
 	}, []);
 
 	if (!isReady) {
@@ -19,7 +19,7 @@ export default function Overlay() {
 
 	return (
 		<div className="absolute z-50 w-screen h-screen pointer-events-none">
-			{/* <Metrics /> */}
+			<Metrics />
 			<EmbedVideo />
 			<Sources />
 		</div>

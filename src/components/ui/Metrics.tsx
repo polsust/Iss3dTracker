@@ -5,12 +5,22 @@ export default function Metrics() {
 	const issData = useContext(IssDataContext);
 
 	return (
-		<div className="top-0 left-0 bg-white opacity-60 rounded-br w-3/12 p-5">
-			<h1>Iss Metrics</h1>
-			<p>Latitude: {issData.position.latitude}</p>
-			<p>Longitude: {issData.position.longitude}</p>
-			<p>Altitude: {issData.altitude.toFixed(0)} Kilometers</p>
-			<p>{issData.velocity.toFixed(0)} KM/H</p>
+		<div className="text-2xl font-extrabold">
+			<div className="absolute top-0 left-0">
+				<p>Latitude: {issData.position.latitude.toFixed(3)}°</p>
+				<p>Longitude: {issData.position.longitude.toFixed(3)}°</p>
+			</div>
+			<div className="absolute top-0 right-0">
+				<p>Altitude: {issData.altitude.toFixed(0)} Km</p>
+				<p>
+					Speed:{" "}
+					{issData.velocity
+						.toFixed(0)
+						.toString()
+						.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+					KM/H
+				</p>
+			</div>
 		</div>
 	);
 }

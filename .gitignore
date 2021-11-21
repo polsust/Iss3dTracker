@@ -25,3 +25,4 @@ yarn-error.log*
 ideas.txt
 .firebase/hosting.YnVpbGQ.cache
 .vscode
+yarn.lock
