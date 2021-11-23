@@ -277,11 +277,11 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 	return (
 		<group ref={iss} {...props} dispose={null}>
 			<mesh
-				onPointerEnter={() => {
+				onPointerOver={() => {
 					issObjectData.setIsCursorHovering(true);
 					document.body.style.cursor = "pointer";
 				}}
-				onPointerLeave={() => {
+				onPointerOut={() => {
 					issObjectData.setIsCursorHovering(false);
 					document.body.style.cursor = "auto";
 				}}
@@ -290,7 +290,7 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 				}}
 			>
 				<boxGeometry args={[15, 5, 15]} />
-				<meshPhongMaterial transparent={true} opacity={0} />
+				<meshPhongMaterial /* transparent={true} opacity={0}  */ />
 			</mesh>
 			<group position={[-6.97, 0, 3.58]}>
 				<group position={[-2.84, 4.08, 6.46]} rotation={[0, 0.83, -0.28]} />
