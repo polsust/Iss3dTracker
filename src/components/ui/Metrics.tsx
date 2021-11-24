@@ -5,12 +5,13 @@ export default function Metrics() {
 	const issData = useContext(IssDataContext);
 
 	return (
-		<div className="text-2xl font-extrabold">
-			<div className="absolute top-0 left-0">
+		<div className="top-0 flex flex-wrap justify-center text-2xl font-extrabold sm:justify-between">
+			<div>
 				<p>Latitude: {issData.position.latitude.toFixed(3)}°</p>
 				<p>Longitude: {issData.position.longitude.toFixed(3)}°</p>
 			</div>
-			<div className="absolute top-0 right-0">
+
+			<div>
 				<p>Altitude: {issData.altitude.toFixed(0)} Km</p>
 				<p>
 					Speed:{" "}
