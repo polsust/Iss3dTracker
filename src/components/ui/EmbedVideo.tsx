@@ -1,14 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import YouTube from "react-youtube";
 import { Iss3dObjectDataContext } from "../../context/Iss3dObjectDataProvider";
 
 export default function EmbedVideo() {
 	const issObjectData = useContext(Iss3dObjectDataContext);
 	const { issScreenPosition } = issObjectData;
-
-	const [isHoveringVideo, setIsHoveringVideo] = useState(false);
-
-	const isHoveringWithin = issObjectData.isCursorHovering || isHoveringVideo;
 
 	return (
 		<div
@@ -17,9 +13,8 @@ export default function EmbedVideo() {
 				left: issScreenPosition.x + window.innerWidth / 4,
 				top: issScreenPosition.y,
 			}}
-			onMouseOver={() => setIsHoveringVideo(true)}
 			className={`transform -translate-x-1/2 -translate-y-1/2 p-3 bg-primary rounded-lg relative
-			${isHoveringWithin ? "visible" : "invisible"}`}
+			${issObjectData.isCameraFollowing ? "visible" : "invisible"}`}
 		>
 			<span className="absolute w-1/12 transform -translate-x-1/2 -translate-y-1/2 top-1/2 -left-4">
 				<svg

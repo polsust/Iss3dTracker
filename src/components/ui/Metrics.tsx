@@ -5,7 +5,7 @@ export default function Metrics() {
 	const issData = useContext(IssDataContext);
 
 	return (
-		<div className="top-0 flex flex-wrap justify-center text-2xl font-extrabold sm:justify-between">
+		<div className="top-0 flex flex-wrap justify-center m-5 text-2xl font-extrabold sm:justify-between">
 			<div>
 				<p>Latitude: {issData.position.latitude.toFixed(3)}°</p>
 				<p>Longitude: {issData.position.longitude.toFixed(3)}°</p>
@@ -20,6 +20,7 @@ export default function Metrics() {
 						.toString()
 						.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
 					KM/H
+					p
 				</p>
 			</div>
 		</div>

@@ -176,9 +176,9 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 	const { nodes, materials } = useGLTF("/iss.glb") as GLTFResult;
 
 	/**
-	 * Whether it is the first mount.
+	 * Whether it is the first render.
 	 */
-	let firstMount: boolean = false;
+	const firstRender = useRef<boolean>(true);
 	let cameraFollowIss = useRef<boolean>(true);
 
 	const iss = useRef<THREE.Group>();
@@ -213,12 +213,17 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 			const newIssPos = convertCoordsToCartesian(issData.position);
 			iss.current.position.set(newIssPos.x, newIssPos.y, newIssPos.z);
 		};
-		setIssInitialPosition();
-		firstMount = true;
-	}, []);
+		if (firstRender.current) {
+			setIssInitialPosition();
+			firstRender.current = false;
+		}
+	}, [issData.position]);
 
 	useEffect(() => {
-		if (firstMount) return;
+		if (firstRender.current) {
+			firstRender.current = false;
+			return;
+		}
 
 		const moveIss = async () => {
 			const currentIssPos: CartesianCoords = iss.current.position;
@@ -250,6 +255,7 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 				if (cameraFollowIss.current) {
 					setTimeout(() => {
 						cameraFollowIss.current = false;
+						issObjectData.setIsCameraFollowing(false);
 					}, 100);
 				}
 			});
@@ -258,6 +264,7 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 				if (code.key !== "Escape") return;
 
 				cameraFollowIss.current = false;
+				issObjectData.setIsCameraFollowing(false);
 			});
 		}
 		const issToScreenPosition = () => {
@@ -277,16 +284,17 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
 	return (
 		<group ref={iss} {...props} dispose={null}>
 			<mesh
-				onPointerOver={() => {
-					issObjectData.setIsCursorHovering(true);
+				onPointerOver={(e) => {
+					e.stopPropagation();
 					document.body.style.cursor = "pointer";
 				}}
-				onPointerOut={() => {
-					issObjectData.setIsCursorHovering(false);
+				onPointerOut={(e) => {
+					e.stopPropagation();
 					document.body.style.cursor = "auto";
 				}}
 				onClick={() => {
 					cameraFollowIss.current = true;
+					issObjectData.setIsCameraFollowing(true);
 				}}
 			>
 				<boxGeometry args={[15, 5, 15]} />
