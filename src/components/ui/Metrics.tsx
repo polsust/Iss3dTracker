@@ -18,9 +18,8 @@ export default function Metrics() {
 					{issData.velocity
 						.toFixed(0)
 						.toString()
-						.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+						.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
 					KM/H
-					p
 				</p>
 			</div>
 		</div>
