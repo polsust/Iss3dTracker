@@ -6,8 +6,8 @@ import { useEffect } from "react";
  * @param interval
  */
 export default function useHotInterval(callback: () => void, interval: number) {
-	useEffect(() => {
-		callback();
-		setInterval(() => callback(), interval);
-	}, []);
+  useEffect(() => {
+    callback();
+    setInterval(() => callback(), interval);
+  }, []);
 }

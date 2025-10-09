@@ -6,14 +6,14 @@ import Overlay from "./components/ui/Overlay";
 import Providers from "./context/Providers";
 
 function App() {
-	return (
-		<Suspense fallback={<LoadingScreen />}>
-			<Providers>
-				<Overlay />
-				<Scene3d />
-			</Providers>
-		</Suspense>
-	);
+  return (
+    <Suspense fallback={<LoadingScreen />}>
+      <Providers>
+        <Overlay />
+        <Scene3d />
+      </Providers>
+    </Suspense>
+  );
 }
 
 export default App;

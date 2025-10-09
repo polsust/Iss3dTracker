@@ -6,7 +6,7 @@ import GlobalCoordinates from "./GlobalCoordinates";
  * The units are in kilometers
  */
 export default interface IssApiResponse {
-	position: GlobalCoordinates;
-	altitude: number;
-	velocity: number;
+  position: GlobalCoordinates;
+  altitude: number;
+  velocity: number;
 }

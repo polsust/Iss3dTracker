@@ -8,37 +8,37 @@ import Iss from "./Iss";
 import Light from "./Light";
 
 export default function Scene3d() {
-	const ContextBridge = useContextBridge(
-		IssDataContext,
-		Iss3dObjectDataContext
-	);
+  const ContextBridge = useContextBridge(
+    IssDataContext,
+    Iss3dObjectDataContext
+  );
 
-	return (
-		<Canvas>
-			<ContextBridge>
-				<Light />
-				<ambientLight intensity={0.5} />
+  return (
+    <Canvas>
+      <ContextBridge>
+        <Light />
+        <ambientLight intensity={0.5} />
 
-				<Stars
-					radius={100}
-					depth={50}
-					count={7000}
-					factor={4}
-					saturation={0}
-					fade
-				/>
+        <Stars
+          radius={100}
+          depth={50}
+          count={7000}
+          factor={4}
+          saturation={0}
+          fade
+        />
 
-				<Iss scale={[0.02, 0.02, 0.02]}></Iss>
+        <Iss scale={[0.02, 0.02, 0.02]}></Iss>
 
-				<Earth scale={[4, 4, 4]} />
+        <Earth scale={[4, 4, 4]} />
 
-				<OrbitControls
-					rotateSpeed={0.5}
-					enablePan={false}
-					minDistance={6}
-					maxDistance={12}
-				/>
-			</ContextBridge>
-		</Canvas>
-	);
+        <OrbitControls
+          rotateSpeed={0.5}
+          enablePan={false}
+          minDistance={6}
+          maxDistance={12}
+        />
+      </ContextBridge>
+    </Canvas>
+  );
 }
