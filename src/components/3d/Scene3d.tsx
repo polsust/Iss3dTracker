@@ -32,7 +32,7 @@ export default function Scene3d() {
         <OrbitControls
           rotateSpeed={0.5}
           enablePan={false}
-          minDistance={6}
+          minDistance={5.2}
           maxDistance={12}
         />
       </ContextBridge>

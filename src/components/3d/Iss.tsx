@@ -197,9 +197,10 @@ function Iss(props: JSX.IntrinsicElements["group"] | any) {
     let latitude = (90 - globalCoordinates.latitude) * (Math.PI / 180)
     let longitude = (180 + globalCoordinates.longitude) * (Math.PI / 180)
 
-    let x = -5 * (Math.sin(latitude) * Math.cos(longitude))
-    let y = 5 * Math.cos(latitude)
-    let z = 5 * Math.sin(latitude) * Math.sin(longitude)
+    const exponential = 4.2
+    let x = -exponential * (Math.sin(latitude) * Math.cos(longitude))
+    let y = exponential * Math.cos(latitude)
+    let z = exponential * Math.sin(latitude) * Math.sin(longitude)
 
     return {
       x,
