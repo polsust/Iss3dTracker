@@ -1,6 +1,5 @@
 import { OrbitControls, Stars, useContextBridge } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
-import React from "react"
 import { IssDataContext } from "../../context/IssDataProvider"
 import { Iss3dObjectDataContext } from "../../context/Iss3dObjectDataProvider"
 import Earth from "./Earth"
