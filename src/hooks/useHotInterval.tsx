@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from "react"
 
 /**
  * Like setInterval, but fires right on the start
@@ -7,7 +7,7 @@ import { useEffect } from "react";
  */
 export default function useHotInterval(callback: () => void, interval: number) {
   useEffect(() => {
-    callback();
-    setInterval(() => callback(), interval);
-  }, []);
+    callback()
+    setInterval(() => callback(), interval)
+  }, [])
 }

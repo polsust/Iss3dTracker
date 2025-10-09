@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import LoadingScreen from "./LoadingScreen";
-import Metrics from "./Metrics";
-import Sources from "./Sources";
+import React, { useEffect, useState } from "react"
+import LoadingScreen from "./LoadingScreen"
+import Metrics from "./Metrics"
+import Sources from "./Sources"
 
 export default function Overlay() {
-  const [isReady, setIsReady] = useState(false);
+  const [isReady, setIsReady] = useState(false)
 
   useEffect(() => {
     setTimeout(() => {
-      setIsReady(true);
-    }, 5000);
-  }, []);
+      setIsReady(true)
+    }, 5000)
+  }, [])
 
   if (!isReady) {
-    return <LoadingScreen />;
+    return <LoadingScreen />
   }
 
   return (
@@ -22,5 +22,5 @@ export default function Overlay() {
       {/* <EmbedVideo /> */}
       <Sources />
     </div>
-  );
+  )
 }

@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { IssDataContext } from "../../context/IssDataProvider";
+import React, { useContext } from "react"
+import { IssDataContext } from "../../context/IssDataProvider"
 
 export default function Metrics() {
-  const issData = useContext(IssDataContext);
+  const issData = useContext(IssDataContext)
 
   return (
     <div className="top-0 flex flex-wrap justify-center m-5 text-2xl font-extrabold sm:justify-between">
@@ -23,5 +23,5 @@ export default function Metrics() {
         </p>
       </div>
     </div>
-  );
+  )
 }

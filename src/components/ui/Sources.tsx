@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export default function Sources() {
   return (
@@ -21,5 +21,5 @@ export default function Sources() {
         </a>
       </nav>
     </footer>
-  );
+  )
 }

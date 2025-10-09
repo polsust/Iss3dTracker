@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import YouTube from "react-youtube";
-import { Iss3dObjectDataContext } from "../../context/Iss3dObjectDataProvider";
+import React, { useContext } from "react"
+import YouTube from "react-youtube"
+import { Iss3dObjectDataContext } from "../../context/Iss3dObjectDataProvider"
 
 export default function EmbedVideo() {
-  const issObjectData = useContext(Iss3dObjectDataContext);
-  const { issScreenPosition } = issObjectData;
+  const issObjectData = useContext(Iss3dObjectDataContext)
+  const { issScreenPosition } = issObjectData
 
   return (
     <div
@@ -70,5 +70,5 @@ export default function EmbedVideo() {
         </span>
       </div>
     </div>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import React from "react";
-import "./LoadingScreen.sass";
+import React from "react"
+import "./LoadingScreen.sass"
 export default function LoadingScreen() {
   return (
     <div className="flex items-center justify-center w-full h-screen">
@@ -21,5 +21,5 @@ export default function LoadingScreen() {
         </g>
       </svg>
     </div>
-  );
+  )
 }
