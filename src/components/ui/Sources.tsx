@@ -1,9 +1,15 @@
-import React from "react"
-
 export default function Sources() {
   return (
     <footer className="absolute bottom-0 w-full pointer-events-auto">
-      <nav className="flex justify-end m-5">
+      <nav className="flex justify-between items-center m-5">
+        <a href="https://ko-fi.com/K3K11MVQ1T" target="_blank">
+          <img
+            height="36"
+            style={{ border: 0, height: 36 }}
+            src="https://storage.ko-fi.com/cdn/kofi5.png?v=6"
+            alt="Buy Me a Coffee at ko-fi.com"
+          />
+        </a>
         <a
           href="https://github.com/PolSust/Iss3dTracker"
           title="GitHub Repository"

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import LoadingScreen from "./LoadingScreen"
 import Metrics from "./Metrics"
 import Sources from "./Sources"
